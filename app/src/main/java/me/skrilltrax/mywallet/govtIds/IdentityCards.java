@@ -6,6 +6,7 @@ import android.widget.ImageView;
 public class IdentityCards {
 
     String Name;
+    String surname;
     int DateOfBirth;
     int MonthOfBirth;
     int YearOfBirth;
@@ -38,6 +39,14 @@ public class IdentityCards {
         return IDNumber;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public Image getPhoto() {
+        return photo;
+    }
+
     public void setName(String name) {
         Name = name;
     }
@@ -57,4 +66,13 @@ public class IdentityCards {
     public void setIDNumber(long IDNumber) {
         this.IDNumber = IDNumber;
     }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setPhoto(Image photo) {
+        this.photo = photo;
+    }
 }
+

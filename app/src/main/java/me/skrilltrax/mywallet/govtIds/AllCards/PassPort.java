@@ -10,8 +10,6 @@ public class PassPort extends IdentityCards {
                 //d stands for Diplomatic
                 // s stands for service
     String CounrtyCode;
-    String surname;
-    String name;
     String nationality;
 
     enum Gender{
@@ -36,15 +34,6 @@ public class PassPort extends IdentityCards {
 
     public String getCounrtyCode() {
         return CounrtyCode;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    @Override
-    public String getName() {
-        return name;
     }
 
     public String getNationality() {
@@ -99,14 +88,6 @@ public class PassPort extends IdentityCards {
         CounrtyCode = counrtyCode;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
