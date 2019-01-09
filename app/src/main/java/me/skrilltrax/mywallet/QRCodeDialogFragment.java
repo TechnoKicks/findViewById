@@ -1,6 +1,7 @@
 package me.skrilltrax.mywallet;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -28,6 +29,7 @@ public class QRCodeDialogFragment extends BottomSheetDialogFragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_ITEM_COUNT = "item_count";
+    public static final Bitmap ARG_BITMAP =
     private Listener mListener;
 
     // TODO: Customize parameters
