@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">My Wallet</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_id">IDs</string>
+    <string name="title_cards">Bank Cards</string>
+    <string name="title_loyalty">Loyalty Cards</string>
+    <string name="title_profile">Profile</string>
 </resources>
