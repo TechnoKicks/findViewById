@@ -1,6 +1,8 @@
-package me.skrilltrax.mywallet.govtIds;
+package me.skrilltrax.mywallet.govtIds.AllCards;
 
 import android.media.Image;
+
+import me.skrilltrax.mywallet.govtIds.IdentityCards;
 
 public class PassPort extends IdentityCards {
 

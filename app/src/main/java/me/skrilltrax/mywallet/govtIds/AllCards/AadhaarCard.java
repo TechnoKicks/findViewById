@@ -1,6 +1,8 @@
-package me.skrilltrax.mywallet.govtIds;
+package me.skrilltrax.mywallet.govtIds.AllCards;
 
-public class AadhaarCard extends IdentityCards{
+import me.skrilltrax.mywallet.govtIds.IdentityCards;
+
+public class AadhaarCard extends IdentityCards {
 
     enum Gender{
         Male, Female, Diverse

@@ -1,7 +1,5 @@
 package me.skrilltrax.mywallet.creditdebitcard;
 
-import me.skrilltrax.mywallet.govtIds.AadhaarCard;
-
 public class CDCards {
 
     Boolean isCredit;
