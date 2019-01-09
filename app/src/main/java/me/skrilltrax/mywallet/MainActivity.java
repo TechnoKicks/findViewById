@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -12,7 +13,10 @@ import androidx.annotation.NonNull;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,6 +25,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements QRCodeDialogFragment.Listener{
 
@@ -103,6 +109,11 @@ public class MainActivity extends AppCompatActivity implements QRCodeDialogFragm
         subtitleText = findViewById(R.id.subtitle);
         subtitleText.setTypeface(tfThin);
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentList fragment = new FragmentList();
+        fragmentTransaction.replace(R.id.frame, fragment);
+        fragmentTransaction.commit();
 
         mTextMessage = (TextView) findViewById(R.id.message);
         navigation = findViewById(R.id.navigation);
@@ -164,5 +175,18 @@ public class MainActivity extends AppCompatActivity implements QRCodeDialogFragm
     public void initTypeFace() {
         tfBold = Typeface.createFromAsset(getAssets(), "font/Montserrat-Bold.ttf");
         tfThin = Typeface.createFromAsset(getAssets(),"font/Montserrat-Medium.ttf");
+    }
+
+static class MyOnClickListener implements View.OnClickListener {
+
+
+    @Override
+    public void onClick(View v) {
+//        int itemPosition = recyclerView.indexOfChild(v);
+//        Log.e(TAG, String.valueOf(itemPosition));
+//        final Intent i = new Intent(v.getContext(),QR.class);
+//        v.getContext().startActivity(i);
+//
+    }
     }
 }
