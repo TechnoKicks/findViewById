@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/cimage_view"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/anmol"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anmol Jain"
+        android:layout_centerHorizontal="true"
+        android:layout_toEndOf="@id/cimage_view"
+        android:layout_marginStart="16dp"
+        android:layout_centerVertical="true"
+        android:textSize="30sp"
+        android:textColor="@color/colorWhite" />
+
+</RelativeLayout>
+
+</RelativeLayout>

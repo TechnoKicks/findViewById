@@ -22,7 +22,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QRScannerActivity"></activity>
+        <activity android:name=".QRScannerActivity" />
+        <activity android:name=".AddCardActivity" />
+        <activity android:name=".Settings" />
+        <activity
+            android:name=".FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="me.skrilltrax.mywallet.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

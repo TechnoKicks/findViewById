@@ -1,22 +1,26 @@
 package me.skrilltrax.mywallet.govtIds;
 
 import android.media.Image;
-import android.widget.ImageView;
 
 public class IdentityCards {
 
-    String Name;
-    String surname;
-    int DateOfBirth;
-    int MonthOfBirth;
-    int YearOfBirth;
-    long IDNumber;
+    public String Name;
+    public String surname;
+    public int DateOfBirth;
+    public int MonthOfBirth;
+    public int YearOfBirth;
+    public String CardNumber;
 
     Image photo;
 
+    public String type;
 
     public IdentityCards() {
 
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getName() {
@@ -35,8 +39,8 @@ public class IdentityCards {
         return YearOfBirth;
     }
 
-    public long getIDNumber() {
-        return IDNumber;
+    public String getCardNumber() {
+        return CardNumber;
     }
 
     public String getSurname() {
@@ -63,8 +67,8 @@ public class IdentityCards {
         YearOfBirth = yearOfBirth;
     }
 
-    public void setIDNumber(long IDNumber) {
-        this.IDNumber = IDNumber;
+    public void setCardNumber(String cardNumber) {
+        this.CardNumber = cardNumber;
     }
 
     public void setSurname(String surname) {

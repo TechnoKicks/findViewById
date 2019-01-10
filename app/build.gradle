@@ -27,6 +27,11 @@ dependencies {
     implementation 'com.github.kenglxn.QRGen:android:2.5.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0-alpha1'
     implementation 'androidx.recyclerview:recyclerview:1.0.0-alpha1'
+    implementation 'jp.wasabeef:blurry:3.0.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.mikhaellopez:circularimageview:3.2.0'
+
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'

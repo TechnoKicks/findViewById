@@ -3,20 +3,22 @@ package me.skrilltrax.mywallet;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import me.skrilltrax.mywallet.fragments.FragmentBankCard;
+import me.skrilltrax.mywallet.fragments.FragmentID;
+import me.skrilltrax.mywallet.fragments.FragmentList;
+import me.skrilltrax.mywallet.fragments.FragmentLoyaltyCard;
+import me.skrilltrax.mywallet.fragments.FragmentProfile;
 
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,9 +26,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
-
-import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements QRCodeDialogFragment.Listener{
 
@@ -38,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements QRCodeDialogFragm
 
     private Typeface tfBold;
     private Typeface tfThin;
+    private Typeface tfMed;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -48,23 +48,23 @@ public class MainActivity extends AppCompatActivity implements QRCodeDialogFragm
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     createHome();
-                    mTextMessage.setText(R.string.title_home);
+                    switchToFragment(new FragmentList());
                     return true;
                 case R.id.navigation_id:
                     createID();
-                    mTextMessage.setText(R.string.title_id);
+                    switchToFragment(new FragmentID());
                     return true;
                 case R.id.navigation_cards:
                     createCards();
-                    mTextMessage.setText(R.string.title_cards);
+                    switchToFragment(new FragmentBankCard());
                     return true;
                 case R.id.navigation_loyalty:
                     createLoyalty();
-                    mTextMessage.setText(R.string.title_loyalty);
+                    switchToFragment(new FragmentLoyaltyCard());
                     return true;
                 case R.id.navigation_profile:
                     createProfile();
-                    mTextMessage.setText(R.string.title_profile);
+                    switchToFragment(new FragmentProfile());
                     return true;
             }
             return false;
@@ -103,11 +103,13 @@ public class MainActivity extends AppCompatActivity implements QRCodeDialogFragm
         checkPermissions();
         initTypeFace();
 
+        MockData mockData = new MockData(this);
+
         appbarText = findViewById(R.id.appbar_text);
         appbarText.setTypeface(tfBold);
 
         subtitleText = findViewById(R.id.subtitle);
-        subtitleText.setTypeface(tfThin);
+        subtitleText.setTypeface(tfMed);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -131,13 +133,15 @@ public class MainActivity extends AppCompatActivity implements QRCodeDialogFragm
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        Intent i = new Intent(this, Settings.class);
+        startActivity(i);
+        recreate();
         return true;
     }
 
     @Override
     public void onItemClicked(int position) {
-        Toast.makeText(this,"YOOO",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"QR Removed",Toast.LENGTH_SHORT).show();
     }
 
     public void onClick(View view) {
@@ -146,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements QRCodeDialogFragm
     }
 
     public void showsheet(View view) {
-        QRCodeDialogFragment.newInstance(1, "Helllooooo").show(getSupportFragmentManager(), "dialog");
+        QRCodeDialogFragment.newInstance(1, "Helllooooo","Yoooooooooo").show(getSupportFragmentManager(), "dialog");
     }
 
     public void makeTransparent() {
@@ -166,18 +170,27 @@ public class MainActivity extends AppCompatActivity implements QRCodeDialogFragm
 
                 requestPermissions(new String[]{Manifest.permission.CAMERA},
                         MY_PERMISSIONS_REQUEST_CAMERA_PERMISSION);
-
-                return;
             }
         }
     }
 
     public void initTypeFace() {
         tfBold = Typeface.createFromAsset(getAssets(), "font/Montserrat-Bold.ttf");
-        tfThin = Typeface.createFromAsset(getAssets(),"font/Montserrat-Medium.ttf");
+        tfMed = Typeface.createFromAsset(getAssets(),"font/Montserrat-Medium.ttf");
+        tfThin = Typeface.createFromAsset(getAssets(),"font/Montserrat-Thin.ttf");
     }
 
-static class MyOnClickListener implements View.OnClickListener {
+    public void switchToFragment(Fragment fragment) {
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.frame, fragment).commit();
+    }
+
+    public void launchadd(View view) {
+        Intent i = new Intent(this, AddCardActivity.class);
+        startActivity(i);
+    }
+
+    static class MyOnClickListener implements View.OnClickListener {
 
 
     @Override

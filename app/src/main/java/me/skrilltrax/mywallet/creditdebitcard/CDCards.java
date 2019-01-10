@@ -1,19 +1,20 @@
 package me.skrilltrax.mywallet.creditdebitcard;
 
-public class CDCards {
+import me.skrilltrax.mywallet.govtIds.IdentityCards;
+
+public class CDCards extends IdentityCards {
 
     Boolean isCredit;
-    Long CardNumber;
-    String Name;
     int ExpiringDate;
     int ExpiringYear;
     int CVVNumber;
 
     public CDCards() {
-
+        type = "Bank card";
     }
 
-    public Long getCardNumber() {
+
+    public String getCardNumber() {
         return CardNumber;
     }
 
@@ -33,7 +34,7 @@ public class CDCards {
         return ExpiringYear;
     }
 
-    public void setCardNumber(Long cardNumber) {
+    public void setCardNumber(String cardNumber) {
         CardNumber = cardNumber;
     }
 
@@ -59,5 +60,14 @@ public class CDCards {
 
     public void setExpiringDate(int expiringDate) {
         ExpiringDate = expiringDate;
+    }
+
+    @Override
+    public String getType() {
+        if (getCredit())
+            type = "Credit Card";
+        else
+            type = "Debit Card";
+        return type;
     }
 }

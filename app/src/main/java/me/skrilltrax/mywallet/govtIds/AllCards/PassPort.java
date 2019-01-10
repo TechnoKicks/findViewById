@@ -6,9 +6,7 @@ import me.skrilltrax.mywallet.govtIds.IdentityCards;
 
 public class PassPort extends IdentityCards {
 
-    char Type; // p stands fot personal
-                //d stands for Diplomatic
-                // s stands for service
+
     String CounrtyCode;
     String nationality;
 
@@ -28,8 +26,12 @@ public class PassPort extends IdentityCards {
     int YearOfExpire;
     Image signature;
 
-    public char getType() {
-        return Type;
+    public PassPort() {
+        type = "Passport";
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getCounrtyCode() {
@@ -78,10 +80,6 @@ public class PassPort extends IdentityCards {
 
     public Image getSignature() {
         return signature;
-    }
-
-    public void setType(char type) {
-        Type = type;
     }
 
     public void setCounrtyCode(String counrtyCode) {

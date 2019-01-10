@@ -20,6 +20,8 @@ import android.widget.TextView;
 
 import net.glxn.qrgen.android.QRCode;
 
+import org.w3c.dom.Text;
+
 /**
  * <p>A fragment that shows a list of items as a modal bottom sheet.</p>
  * <p>You can show this modal bottom sheet from your activity like this:</p>
@@ -33,14 +35,16 @@ public class QRCodeDialogFragment extends BottomSheetDialogFragment {
     // TODO: Customize parameter argument names
     private static final String ARG_ITEM_COUNT = "item_count";
     public static final String ARG_DATA = "Data";
+    public static final String ARG_TITLE = "Title";
     private Listener mListener;
 
     // TODO: Customize parameters
-    public static QRCodeDialogFragment newInstance(int itemCount, String id) {
+    public static QRCodeDialogFragment newInstance(int itemCount, String id, String title) {
         final QRCodeDialogFragment fragment = new QRCodeDialogFragment();
         final Bundle args = new Bundle();
         args.putInt(ARG_ITEM_COUNT, itemCount);
         args.putString(ARG_DATA, id);
+        args.putString(ARG_TITLE, title);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,7 +60,7 @@ public class QRCodeDialogFragment extends BottomSheetDialogFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         final RecyclerView recyclerView = (RecyclerView) view;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new ItemAdapter(getArguments().getInt(ARG_ITEM_COUNT), getArguments().getString(ARG_DATA)));
+        recyclerView.setAdapter(new ItemAdapter(getArguments().getInt(ARG_ITEM_COUNT), getArguments().getString(ARG_DATA), getArguments().getString(ARG_TITLE)));
     }
 
     @Override
@@ -83,11 +87,14 @@ public class QRCodeDialogFragment extends BottomSheetDialogFragment {
     private class ViewHolder extends RecyclerView.ViewHolder {
 
         final ImageView qrImageView;
+        TextView title_view;
+
 
         ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             // TODO: Customize the item layout
             super(inflater.inflate(R.layout.fragment_item_list_dialog_item, parent, false));
             qrImageView = (ImageView) itemView.findViewById(R.id.qrImage);
+            title_view = itemView.findViewById(R.id.text);
             qrImageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -106,11 +113,13 @@ public class QRCodeDialogFragment extends BottomSheetDialogFragment {
         private final int mItemCount;
         private final String mid;
         private final Bitmap bitmap;
+        private String title_text;
 
-        ItemAdapter(int itemCount, String id) {
+        ItemAdapter(int itemCount, String id, String title_text) {
             mItemCount = itemCount;
             mid = id;
             bitmap = QRCode.from(id).withSize(600, 600).bitmap();
+            this.title_text = title_text;
         }
 
         @Override
@@ -121,6 +130,8 @@ public class QRCodeDialogFragment extends BottomSheetDialogFragment {
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             holder.qrImageView.setImageBitmap(bitmap);
+//            holder.title_view.setText(title_text);
+
         }
 
         @Override

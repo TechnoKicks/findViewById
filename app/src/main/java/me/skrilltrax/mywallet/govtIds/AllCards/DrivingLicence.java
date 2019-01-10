@@ -2,7 +2,9 @@ package me.skrilltrax.mywallet.govtIds.AllCards;
 
 import android.media.Image;
 
-public class DrivingLicence {
+import me.skrilltrax.mywallet.govtIds.IdentityCards;
+
+public class DrivingLicence extends IdentityCards {
 
     Image Signature;
     String FatherName;
@@ -21,6 +23,7 @@ public class DrivingLicence {
 
 
     public DrivingLicence() {
+        type = "Driving Licence";
     }
 
     public Image getSignature() {
@@ -110,4 +113,7 @@ public class DrivingLicence {
     public void setExpireYear(int expireYear) {
         ExpireYear = expireYear;
     }
+
+    public String getType() { return type;}
+
 }

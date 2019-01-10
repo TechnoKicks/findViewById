@@ -7,6 +7,7 @@ public class VoterID extends IdentityCards {
     int age;
 
     public VoterID() {
+        type = "Voter ID";
     }
 
     public String getAddress() {
